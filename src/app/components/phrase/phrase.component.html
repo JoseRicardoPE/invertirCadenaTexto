@@ -1,0 +1,32 @@
+<div class="d-flex flex-column">
+    <form class="col-md-6 m-auto" action="" [formGroup]="formPhrase" (ngSubmit)="reversePhrase()">
+        <div>
+            <label for="inputPhrase" class="me-3">Ingrese una frase:</label>
+            <input 
+                type="text" 
+                name="inputPhrase" 
+                id="inputPhrase"
+                formControlName="inputPhrase"
+            >
+        </div>
+        <ng-container *ngIf="formPhrase.get('inputPhrase')?.hasError('required') && formPhrase.get('inputPhrase')?.touched">
+            <div class="text-danger">
+                <span>¡La frase es <strong>obligatoria</strong>!</span>
+            </div>
+        </ng-container>
+        <div>
+            <button 
+                type="submit" 
+                class="btn btn-success btn-sm mt-3 fw-bold "
+                [disabled]="formPhrase.invalid"
+            >
+                Reverse Phrase
+            </button>
+        </div>
+        <ng-container *ngIf="showPhrase">
+            <div class="mt-4">
+                <p>{{invertPhrase}}</p>
+            </div>
+        </ng-container>
+    </form>
+</div>
